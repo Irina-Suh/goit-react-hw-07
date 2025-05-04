@@ -3,15 +3,16 @@ import { Form, Field, Formik, ErrorMessage} from 'formik'
 import s from './ContactForm.module.css'
 import * as Yup from "yup";
 import { useDispatch } from 'react-redux';
-import { addContact } from '../../redux/contactsSlice.js';
-import { nanoid } from 'nanoid';
+import { addContact } from '../../redux/contactsOps';
+// import { nanoid } from 'nanoid';
+
 
 const ContactForm = () => {
   const dispatch = useDispatch();
 
   const onSubmit = (values, {resetForm}) => {
     const newContact = {
-      id: nanoid (),
+      // id: nanoid (),
       name: values.name,
       number: values.number,
     };
@@ -29,7 +30,8 @@ const ContactForm = () => {
     const re = /^\d{3}-\d{2}-\d{2}$/;
     const feedbackSchema = Yup.object().shape({
 name: Yup.string().trim().min(3, "Too Short!").max(50, "Too Long!").required(),
-number:Yup.string().trim().matches(re, 'Format must be 444-44-44').required(),
+ number:Yup.string().trim().matches(re, 'Format must be 444-44-44').required(),
+
     });
 
 
